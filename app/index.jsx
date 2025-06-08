@@ -12,7 +12,6 @@ import { StatusBar } from "expo-status-bar";
 
 export default function Index() {
   const router = useRouter();
-  // console.log("Rendering Index screen");
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen

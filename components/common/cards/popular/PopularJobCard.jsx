@@ -12,15 +12,10 @@ const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
   const apiLogoUrl = item?.employer_logo; // Use optional chaining here too for safety
 
   // --- Start Detailed Logging ---
-  console.log(`--------------------------------`);
-  console.log(`Job Title: ${item.job_title ? item.job_title.substring(0,30) : 'N/A'}`);
-  console.log(`1. API employer_logo (apiLogoUrl):`, apiLogoUrl);
-  console.log(`2. typeof checkImageURL:`, typeof checkImageURL);
 
   let isUrlConsideredValidByFunction = false;
   if (typeof checkImageURL === 'function') {
     isUrlConsideredValidByFunction = checkImageURL(apiLogoUrl);
-    console.log(`3. Result of checkImageURL(apiLogoUrl):`, isUrlConsideredValidByFunction);
   } else {
     console.warn(`   WARNING: checkImageURL is not a function! Import might have failed or it's not exported correctly.`);
   }
