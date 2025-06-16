@@ -27,8 +27,6 @@ const Popularjobs = () => {
     setSelectedJob(item.job_id);
   };
 
-  // console.log("Popularjobs data:", data);
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>

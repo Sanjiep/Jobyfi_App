@@ -31,10 +31,12 @@ const JobDetails = () => {
   const { data, isLoading, error, refetch } = useFetch("job-details", {
     job_id: params.id,
   });
-  // console.log("Job Details Data:", data[0].job_highlights?.Qualifications ?? "No qualifications provided");
-  
 
-  const onRefresh = {}
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setRefreshing(false);
+  }, []);
 
   const displayTabContent = () => {
     switch (activeTab) {
@@ -53,7 +55,7 @@ const JobDetails = () => {
           <Specifics
             title="Responsibilities"
             points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
-          />
+            />
         );
       default:
     }

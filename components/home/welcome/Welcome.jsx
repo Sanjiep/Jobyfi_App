@@ -10,7 +10,7 @@ import {
 
 import styles from "./welcome.style";
 import { icons, SIZES } from "@/constants";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 
 const jobTypes = [
   "Full-time",
@@ -21,9 +21,10 @@ const jobTypes = [
 ];
 
 
-const Welcome = () => {
+const Welcome = ({searchTerm, setSearchTerm, handleClick}) => {
   const router = useRouter();
   
+   const params = useLocalSearchParams();
   const [activeJobType, setActiveJobType] = useState("Full-time");
 
   return (
@@ -39,15 +40,15 @@ const Welcome = () => {
             style={styles.searchInput}
             placeholder="What are you looking for?"
             placeholderTextColor="#666"
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText= {(text) => setSearchTerm(text)}
+            returnKeyType="search"
           />
         </View>
+
         <TouchableOpacity
           style={styles.searchBtn}
-          onPress={() => {
-            router.push("/search");
-          }}
+          onPress={handleClick}
         >
           <Image
             source={icons.search}
@@ -71,7 +72,7 @@ const Welcome = () => {
           keyExtractor={item => item}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ columnGap: SIZES.medium }}
+          contentContainerStyle={{ columnGap: SIZES.small }}
         />
       </View>
     </View>
